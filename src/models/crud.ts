@@ -28,3 +28,21 @@ export const crudDeliver: CrudAdmin<models.Deliver> = {
   forbidden: ['uuid'],
   noReturn: ['password'],
 }
+
+export const crudAddress: CrudAdmin<models.Adress> = {
+  model: models.Adress,
+  route: '/address',
+  forbidden: ['uuid'],
+}
+
+export const crudColis: CrudAdmin<models.Colis> = {
+  model: models.Colis,
+  route: '/colis',
+  forbidden: ['uuid'],
+}
+
+export const crudLivraison: CrudAdmin<models.Livraison> = {
+  model: models.Livraison,
+  route: '/livraison',
+  forbidden: ['uuid'],
+}

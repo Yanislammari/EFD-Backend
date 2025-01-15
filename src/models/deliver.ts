@@ -93,6 +93,14 @@ Deliver.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    lat:{
+        type: DataTypes.FLOAT,
+        allowNull: true
+    },
+    lng:{
+        type: DataTypes.FLOAT,
+        allowNull: true
+    }
   },
   {
     sequelize,
