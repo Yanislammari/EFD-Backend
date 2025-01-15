@@ -55,3 +55,8 @@ Livraison.init(
   }
 );
 
+Livraison.belongsTo(Deliver, {
+  foreignKey: 'deliveryman_id',
+  as: 'deliveryman',
+});
+
