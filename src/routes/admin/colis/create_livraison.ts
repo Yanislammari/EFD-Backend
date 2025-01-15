@@ -1,6 +1,5 @@
 import { Application, Request, Response } from "express";
-import { attributesAddress, attributesColis, Colis, Livraison } from "../../../models";
-import { Col } from "sequelize/types/utils";
+import { attributesColis, Colis, Livraison } from "../../../models";
 import { Op } from "sequelize";
 
 export const createLivraison = (app : Application)=>{
