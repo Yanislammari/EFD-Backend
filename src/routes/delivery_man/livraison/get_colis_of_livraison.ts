@@ -1,9 +1,10 @@
 import { Application, Request, Response } from "express";
-import { attributesColis, attributesLivraison, Colis, Livraison } from "../../../models";
+import { Adress, attributesColis, attributesLivraison, Colis, Livraison } from "../../../models";
 import { tokenText } from "../../../middleware";
 import { Op } from "sequelize";
 
 export const deliveryManGetColisToDeliver = (app : Application)=>{
+  // Get all colis of the closest livraison
   app.get('/deliveryman/colis', async (req : Request, res : Response) => {
     try{
       const idUser = req[tokenText].id;
@@ -23,7 +24,13 @@ export const deliveryManGetColisToDeliver = (app : Application)=>{
       const colisToDeliver = await Colis.findAll({
         where: {
           [attributesColis.livraison_id] : idLivraison,
-        }
+        },
+        include: [
+          {
+            as: 'adress',
+            model: Adress,
+          }
+        ]
       });
       res.status(200).json(colisToDeliver);
       return;

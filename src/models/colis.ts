@@ -89,4 +89,5 @@ Colis.belongsTo(Adress, {
 
 Colis.belongsTo(Livraison,{
   foreignKey: 'livraison_id',
+  onDelete: 'SET NULL'
 });
