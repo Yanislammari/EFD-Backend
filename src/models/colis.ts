@@ -21,8 +21,8 @@ export class Colis extends Model {
     public adress_id!: string;
     public livraison_id!: string;
     public status!: string;
-    public lgt!: string;
-    public lat!: string;
+    public lgt!: number;
+    public lat!: number;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
