@@ -1,8 +1,10 @@
 import { Application, Request, Response } from "express";
 import { Adress, Colis } from "../../../models";
+import { createVerifyTokenMiddleware } from "../../../middleware";
+import { isAdminMiddleware } from "../../../middleware/isAdmin";
 
 export const adminPostColis = (app : Application)=>{
-  app.post('/admin/colis', async (req : Request, res : Response) => {
+  app.post('/admin/colis', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req : Request, res : Response) => {
     try {
       if(!req.body.adress){
         const colis = await Colis.create(req.body.colis);

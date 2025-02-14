@@ -1,6 +1,8 @@
 import { Application, Request, Response } from "express";
 import { attributesColis, Colis, Deliver, Livraison } from "../../../models";
 import { Op } from "sequelize";
+import { createVerifyTokenMiddleware } from "../../../middleware";
+import { isAdminMiddleware } from "../../../middleware/isAdmin";
 
 export const adminPatchLivraison = (app : Application)=>{
 
@@ -8,7 +10,7 @@ export const adminPatchLivraison = (app : Application)=>{
   // une array de colis_uuid a ajouter dans la base de donnée.  colis : [...]
   // il est nécessaire de mettre les colis uuid déjà présent dans la livraison dans colis
 
-  app.patch('/admin/livraison/:uuid', async (req : Request, res : Response) => {
+  app.patch('/admin/livraison/:uuid', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req : Request, res : Response) => {
     try {
       await Livraison.update(
         req.body.livraison,

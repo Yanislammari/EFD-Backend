@@ -1,11 +1,11 @@
 import { Application, Request, Response } from "express";
 import { Adress, attributesColis, attributesLivraison, Colis, Livraison } from "../../../models";
-import { tokenText } from "../../../middleware";
+import { createVerifyTokenMiddleware, tokenText } from "../../../middleware";
 import { Op } from "sequelize";
 
 export const deliveryManGetColisToDeliver = (app : Application)=>{
   // Get all colis of the closest livraison
-  app.get('/deliveryman/colis', async (req : Request, res : Response) => {
+  app.get('/deliveryman/colis', createVerifyTokenMiddleware(), async (req : Request, res : Response) => {
     try{
       const idUser = req[tokenText].id;
       const today = new Date();

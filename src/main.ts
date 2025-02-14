@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import{ Request, Response } from 'express';
 import { startOfDatabase } from './utils/db_handler';
-import { createVerifyTokenMiddleware } from './middleware';
 import * as modelsCruds from './models/crud';
 import * as routeCruds from './routes/crud';
 import * as routes from './routes';

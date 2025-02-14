@@ -1,9 +1,9 @@
 import { Application, Request, Response } from "express";
 import { attributesLivraison, Livraison } from "../../../models";
-import { tokenText } from "../../../middleware";
+import { createVerifyTokenMiddleware, tokenText } from "../../../middleware";
 
 export const deliveryManGetAllLivraison = (app : Application)=>{
-  app.get('/deliveryman/livraison', async (req : Request, res : Response) => {
+  app.get('/deliveryman/livraison', createVerifyTokenMiddleware(), async (req : Request, res : Response) => {
     try{
       const idDelivery = req[tokenText].id;
       const livraisons = await Livraison.findAll({

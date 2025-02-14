@@ -1,12 +1,14 @@
 import { Application, Request, Response } from "express";
 import { Adress, Colis } from "../../../models";
+import { createVerifyTokenMiddleware } from "../../../middleware";
+import { isAdminMiddleware } from "../../../middleware/isAdmin";
 
 export const adminGetAllColisOfLivraison = (app : Application)=>{
 
   //return all colis
   //return all colis that are in the livraison
   //so to do the patch livraison we can access the colis id already in the livraison
-  app.get('/admin/colis_to_deliver/:livraison_id', async (req : Request, res : Response) => {
+  app.get('/admin/colis_to_deliver/:livraison_id', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req : Request, res : Response) => {
     try {
       const colis = await Colis.findAll({
         include:[
