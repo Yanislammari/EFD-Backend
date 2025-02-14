@@ -1,4 +1,4 @@
-import { Admin } from "../../models";
+import { Admin } from "../models";
 
 export async function getAdminById(id: string) {
   const admin = await Admin.findByPk(id);

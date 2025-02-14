@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { tokenText } from './token';
-import { getAdminById } from '../routes/admin/get_admin_by_id';
+import { getAdminById } from '../routes/get_admin_by_id';
 
 export const isAdminMiddleware = () => {
   return (req: Request, res: Response, next: NextFunction) => {
