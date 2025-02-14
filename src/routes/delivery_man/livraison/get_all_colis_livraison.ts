@@ -1,10 +1,11 @@
 import { Application, Request, Response } from "express";
 import { Adress, Colis, attributesColis } from "../../../models";
+import { createVerifyTokenMiddleware } from "../../../middleware";
 
 //get all the colis of the livraison you want
 
 export const deliveryManGetAllLivraisonColis = (app : Application)=>{
-  app.get('/deliveryman/colis/:livraison_id', async (req : Request, res : Response) => {
+  app.get('/deliveryman/colis/:livraison_id', createVerifyTokenMiddleware(), async (req : Request, res : Response) => {
     try{
       const colis = await Colis.findAll({
         where: {

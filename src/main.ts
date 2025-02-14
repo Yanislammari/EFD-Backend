@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import{ Request, Response } from 'express';
 import { startOfDatabase } from './utils/db_handler';
-import { createVerifyTokenMiddleware } from './middleware';
 import * as modelsCruds from './models/crud';
 import * as routeCruds from './routes/crud';
 import * as routes from './routes';
@@ -11,7 +10,6 @@ startOfDatabase(); // start db
 
 const app = express();
 app.use(bodyParser.json()); 
-app.use(createVerifyTokenMiddleware()); //if no token it does nothing, so if a route required it and its not included it will crash
 //it must be put in authorization header
 //you can access the id of the user in req[tokenText].id
 
