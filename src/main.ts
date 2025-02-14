@@ -11,7 +11,6 @@ startOfDatabase(); // start db
 
 const app = express();
 app.use(bodyParser.json()); 
-app.use(createVerifyTokenMiddleware()); //if no token it does nothing, so if a route required it and its not included it will crash
 //it must be put in authorization header
 //you can access the id of the user in req[tokenText].id
 
