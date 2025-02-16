@@ -1,10 +1,9 @@
 import { Request, Response, Application } from "express";
 import { createVerifyTokenMiddleware } from "../../../middleware";
-import { isAdminMiddleware } from "../../../middleware/isAdmin";
 import { Deliver } from "../../../models";
 
 export const adminGetLivreurById = (app: Application) => {
-  app.get("/admin/delivery_man/:id", createVerifyTokenMiddleware(), isAdminMiddleware(), async (req: Request, res: Response) => {
+  app.get("/deliver/delivery_man/:id", createVerifyTokenMiddleware(), async (req: Request, res: Response) => {
     try {
       const id = req.params.id;
       const deliveryMan = await Deliver.findByPk(id);
