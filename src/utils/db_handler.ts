@@ -3,6 +3,7 @@ import { hostDb, passwordDb, userDb } from './data';
 
 export const sequelize = new Sequelize(hostDb, userDb, passwordDb, {
     host: '127.0.0.1',
+    port: 8889,
     dialect: 'mysql',
     define: {
         createdAt: 'created_at',
