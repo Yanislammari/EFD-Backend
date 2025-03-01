@@ -5,14 +5,13 @@ import { startOfDatabase } from './utils/db_handler';
 import * as modelsCruds from './models/crud';
 import * as routeCruds from './routes/crud';
 import * as routes from './routes';
+import path from 'path';
 
 startOfDatabase(); // start db
 
 const app = express();
 app.use(bodyParser.json()); 
-//it must be put in authorization header
-//you can access the id of the user in req[tokenText].id
-
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 Object.keys(routes).forEach((key) => {
     routes[key](app);

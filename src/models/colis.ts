@@ -11,6 +11,7 @@ export const attributesColis = {
     status : 'status',
     lgt : 'lgt',
     lat : 'lat',
+    image_path: 'image_path',
     createdAt: 'created_at',
     updatedAt: 'upadated_at'
 };
@@ -23,6 +24,7 @@ export class Colis extends Model {
     public status!: string;
     public lgt!: number;
     public lat!: number;
+    public image_path!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -75,6 +77,10 @@ Colis.init(
       type: DataTypes.FLOAT,
       allowNull: true,
     },
+    image_path:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   {
     sequelize,
