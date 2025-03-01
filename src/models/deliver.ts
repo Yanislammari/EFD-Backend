@@ -9,6 +9,8 @@ export const attributesDeliver = {
     status : 'status',
     email : 'email',
     password: 'password',
+    lat: 'lat',
+    lng: 'lng',
     createdAt: 'created_at',
     updatedAt: 'updated_at'
 };
@@ -21,6 +23,8 @@ export class Deliver extends Model {
     public status!: string;
     public email!: string;
     public password!: string;
+    public lat!: number;
+    public lng!: number;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }

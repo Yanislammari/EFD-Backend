@@ -16,7 +16,6 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
         const decoded = jwt.verify(token, keyToken);
 
         req[tokenText] = decoded;
-
         return next();
     } catch (e) {
         console.log(e);

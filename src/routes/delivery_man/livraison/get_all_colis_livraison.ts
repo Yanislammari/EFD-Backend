@@ -9,6 +9,7 @@ export const deliveryManGetAllLivraisonColis = (app : Application)=>{
       const colis = await Colis.findAll({
         where: {
           [attributesColis.livraison_id] : req.params.livraison_id,
+          [attributesColis.status]: 'pending'
         },
         include:[
           {
