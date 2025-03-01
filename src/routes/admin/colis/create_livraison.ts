@@ -1,9 +1,11 @@
 import { Application, Request, Response } from "express";
 import { attributesColis, Colis, Livraison } from "../../../models";
 import { Op } from "sequelize";
+import { createVerifyTokenMiddleware } from "../../../middleware";
+import { isAdminMiddleware } from "../../../middleware/isAdmin";
 
 export const createLivraison = (app : Application)=>{
-  app.post('/admin/livraison', async (req : Request, res : Response) => {
+  app.post('/admin/livraison', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req : Request, res : Response) => {
     try {
       const livraison = await Livraison.create(req.body.livraison);
       const livraisonUuid = livraison.uuid;

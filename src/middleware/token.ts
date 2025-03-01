@@ -8,8 +8,7 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     const token = (req.headers['authorization'] as string)?.split(' ')[1];
 
     if (!token) {
-        return next();
-        //return res.status(401).json({ message: 'Access Denied: No token provided.' });
+        return res.status(401).json({ message: 'Access Denied: No token provided.' });
     }
 
     try {

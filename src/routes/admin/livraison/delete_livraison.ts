@@ -1,8 +1,10 @@
 import { Application, Request, Response } from "express";
 import { Livraison } from "../../../models";
+import { createVerifyTokenMiddleware } from "../../../middleware";
+import { isAdminMiddleware } from "../../../middleware/isAdmin";
 
 export const adminDeleteLivraison = (app : Application)=>{
-  app.delete('/admin/livraison/:uuid', async (req : Request, res : Response) => {
+  app.delete('/admin/livraison/:uuid', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req : Request, res : Response) => {
     try {
       const livraison = await Livraison.findOne();
       await Livraison.destroy({
