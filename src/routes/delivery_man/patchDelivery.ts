@@ -1,9 +1,9 @@
 import { Application, Request, Response } from "express";
 import { Deliver } from "../../models";
-import { tokenText } from "../../middleware";
+import { createVerifyTokenMiddleware, tokenText } from "../../middleware";
 
 export const changeCoordinateDeliveryMan = (app : Application)=>{
-  app.patch('/deliveryman/position', async (req : Request, res : Response) => {
+  app.patch('/deliveryman/position',createVerifyTokenMiddleware(), async (req : Request, res : Response) => {
     try{
       const id = req[tokenText].id;
       const deliver = await Deliver.findByPk(id);
