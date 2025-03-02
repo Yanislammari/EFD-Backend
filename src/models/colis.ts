@@ -91,6 +91,7 @@ Colis.init(
 
 Colis.belongsTo(Adress, {
   foreignKey: 'adress_id',
+  onDelete: 'CASCADE'
 });
 
 Colis.belongsTo(Livraison,{
