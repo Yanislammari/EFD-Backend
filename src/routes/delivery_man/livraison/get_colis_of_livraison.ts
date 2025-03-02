@@ -15,7 +15,7 @@ export const deliveryManGetColisToDeliver = (app : Application)=>{
           [attributesLivraison.livraison_date]: {
             [Op.gte]: today, // Exclude dates earlier than today
           },
-          //[attributesColis.status]: 'pending'
+          [attributesColis.status]: 'pending'
         },
         order: [
           [attributesLivraison.livraison_date, 'ASC']
