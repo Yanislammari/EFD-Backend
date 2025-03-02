@@ -6,7 +6,6 @@ import { isAdminMiddleware } from "../../../middleware/isAdmin";
 export const adminDeleteLivraison = (app: Application) => {
   app.delete('/admin/livraison/:uuid', createVerifyTokenMiddleware(), isAdminMiddleware(), async (req: Request, res: Response) => {
     try {
-      const livraison = await Livraison.findOne();
       await Livraison.destroy({
         where: {
           uuid: req.params.uuid

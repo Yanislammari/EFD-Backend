@@ -58,5 +58,12 @@ Livraison.init(
 Livraison.belongsTo(Deliver, {
   foreignKey: 'deliveryman_id',
   as: 'deliveryman',
+  onDelete: 'CASCADE',
+});
+
+Deliver.hasMany(Livraison, {
+  foreignKey: 'deliveryman_id',
+  as: 'livraisons',
+  onDelete: 'CASCADE',
 });
 
