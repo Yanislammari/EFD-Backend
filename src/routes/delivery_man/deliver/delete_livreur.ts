@@ -4,7 +4,7 @@ import { Deliver } from "../../../models";
 import { isVerifyMiddleware } from "../../../middleware/isVerify";
 
 export const deliverDeleteLivreur = (app: Application) => {
-  app.delete("/admin/delivery_man/:id", createVerifyTokenMiddleware(), isVerifyMiddleware(), async (req: Request, res: Response) => {
+  app.delete("/deliver/delivery_man/:id", createVerifyTokenMiddleware(), isVerifyMiddleware(), async (req: Request, res: Response) => {
     try {
       const id = req.params.id;
       const deliveryMan = await Deliver.findByPk(id);
