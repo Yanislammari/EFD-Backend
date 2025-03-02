@@ -4,3 +4,4 @@ export * from "./deliver";
 export * from "./patchDelivery";
 export * from "./photo";
 export * from "./colis";
+export * from "./forgot_password";

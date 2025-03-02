@@ -1,11 +1,11 @@
 import { Application, Request, Response } from "express";
 import { Deliver } from "../../models";
 import bcrypt from "bcrypt"
-import { emailEFD } from "../../utils";
+import { emailEFD, transporter } from "../../utils";
 
 
 export const getNewPasswd = (app : Application)=>{
-  app.patch('/deliveryman/forgot_password', async (req : Request, res : Response):Promise<any> => {
+  app.post('/deliveryman/forgot_password', async (req : Request, res : Response):Promise<any> => {
     try{
       const clearPasswd = Math.random().toString(36).substring(2,10);
       const salt = await bcrypt.genSalt(10);
@@ -29,8 +29,18 @@ export const getNewPasswd = (app : Application)=>{
         text : "You forgot your password here is the new one : \n\n"+clearPasswd
       }
 
-      tra
+      deliver.password = cachPasswd;
+      await deliver.save();
 
+      transporter.sendMail(mailOptions,function(error,info){
+        if(error){
+            console.log(error);
+            res.status(500).json({message : "Probleme inconnu"});
+        }
+        else{
+            res.status(200).json({message : "Sent email successfull"});
+        }
+      })
     }
     catch (err) {
       console.log(err);
