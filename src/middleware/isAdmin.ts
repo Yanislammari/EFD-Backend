@@ -7,18 +7,18 @@ export const isAdminMiddleware = () => {
     (async () => {
       try {
         const userId = req[tokenText]?.id;
-        if(!userId) {
+        if (!userId) {
           return res.status(401).json({ error: "Unauthorized" });
         }
 
         const admin = await getAdminById(userId);
-        if(!admin) {
+        if (!admin) {
           return res.status(403).json({ error: "You must be admin" });
         }
 
         next();
       }
-      catch(err) {
+      catch (err) {
         console.error("Middleware error:", err);
         return res.status(500).json({ error: "Internal server error" });
       }
